@@ -22,7 +22,7 @@ app.use(
   serve({
     client: inngests,
     functions,
-  })
+  }),
 );
 
 app.get("/api/test", (req, res) => {
@@ -30,14 +30,11 @@ app.get("/api/test", (req, res) => {
 });
 
 const startServer = async () => {
+  await Connectdb();
   try {
-    await Connectdb();
-
-    if (ENV.Node_ENV !== "production") {
-      app.listen(ENV.PORT, () => {
-        console.log(`Server is running on http://localhost:${ENV.PORT}`);
-      });
-    }
+    app.listen(ENV.PORT, () => {
+      console.log(`Server is running on http://localhost:${ENV.PORT}`);
+    });
   } catch (error) {
     console.log("Error in Starting server", error);
     process.exit(1);
