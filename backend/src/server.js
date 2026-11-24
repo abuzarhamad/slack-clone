@@ -1,4 +1,3 @@
-
 import dns from "node:dns";
 
 dns.setServers(["8.8.8.8", "1.1.1.1"]);
@@ -9,7 +8,6 @@ import Connectdb from "./config/db.js";
 import { ENV } from "./config/env.js";
 import { clerkMiddleware } from "@clerk/express";
 import { serve } from "inngest/express";
-
 import { inngests } from "./inngest/client.js";
 import { functions } from "./inngest/functions.js";
 
@@ -19,7 +17,6 @@ const app = express();
 
 app.use(express.json());
 app.use(clerkMiddleware());
-
 app.use(
   "/api/inngest",
   serve({
